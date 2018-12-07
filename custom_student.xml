@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.cuhksz.learning.ImageViewMasked
+        android:id="@+id/photo"
+        android:layout_width="80dp"
+        android:layout_height="76dp"
+        app:srcCompat="@drawable/sample_1" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/cname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:text="C-Name"
+            android:textSize="24dp"
+            tools:text="C-Name" />
+
+        <TextView
+            android:id="@+id/ename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:text="E-Name"
+            android:textSize="24dp"
+            tools:text="E-Name" />
+
+        <TextView
+            android:id="@+id/pinyin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:text="Pin Yin"
+            android:textSize="24dp"
+            tools:text="Pin Yin" />
+
+        <TextView
+            android:id="@+id/school"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:text="School"
+            android:textSize="24dp"
+            tools:text="School" />
+
+    </FrameLayout>
+
+</LinearLayout>
