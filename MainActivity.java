@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,6 +25,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG, getPackageName());
+
         // Get list of activities
         PackageInfo packageInfo =
                 getPackageManager().getPackageArchiveInfo(getPackageResourcePath(),
@@ -49,19 +55,11 @@ public class MainActivity extends AppCompatActivity {
 //        ArrayAdapter<String> adapter =
 //                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, names);
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(this, R.layout.spinner_layout, R.id.spinnerTarget, names);
+               new ArrayAdapter<>(this, R.layout.spinner_layout, R.id.spinnerTarget, names);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(R.layout.spinner_layout);
         spinner.setAdapter(adapter);
-
         Log.i(TAG, "Done getting list of activities");
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i(TAG, "onResume()");
     }
 
     private String getActivityName(String name) {
@@ -76,29 +74,18 @@ public class MainActivity extends AppCompatActivity {
 
         // Passing the class name to the selected activity
         Intent intent = new Intent(name);
-        String[] parts = name.split("\\.");
-        String title = parts[parts.length-1];
-        intent.putExtra("title", title);
+        intent.putExtra("title", "this is a title");
+//        String[] parts = name.split("\\.");
+//        String title = parts[parts.length-1];
+//        intent.putExtra("title", title);
 
         // Using bundle to pass data
         Bundle bundle = new Bundle();
-        bundle.putString("other", "Title from bundle");
+        bundle.putString("title", "Title from bundle");
         intent.putExtras(bundle);
 
-        // startActivity(intent);
-        startActivityForResult(intent, 99);
+        startActivity(intent);
         Toast.makeText(this, "onButtonClick()", Toast.LENGTH_LONG).show();
     }
 
-
-    @Override
-    protected void onActivityResult(int requestCode,
-                                    int resultCode,
-                                    Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 99 && resultCode == RESULT_OK && data != null){
-            TextView textView = (TextView) findViewById(R.id.main_title);
-            textView.setText(data.getStringExtra("data"));
-        }
-    }
 }
